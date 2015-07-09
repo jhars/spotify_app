@@ -10,7 +10,7 @@ $(function() {
   var songTemplate = _.template($('#song-template').html());
 
   // submit form to search spotify API
-  $spotifySearch.on('submit', function(event) {
+  $spotifySearch.keyup(function(event) {
     event.preventDefault();
     $searchResults.empty();
     var searchTerms = $trackInput.val();
@@ -47,7 +47,6 @@ $(function() {
     });
 
     // reset the form
-    $spotifySearch[0].reset();
     $trackInput.focus();
   });
 
