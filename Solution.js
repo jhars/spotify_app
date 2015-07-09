@@ -14,7 +14,7 @@ $(function() {
     event.preventDefault();
     $searchResults.empty();
     var searchTerms = $trackInput.val();
-    var spotifyAPIurl = 'https://api.spotify.com/v1/search?type=track&q=' + searchTerms;
+    var spotifyAPIurl = 'https://api.spotify.com/v1/search?type=track&q=' + searchTrack;
     // use AJAX to call spotify API
     $.get(spotifyAPIurl, function(data) {
 
@@ -28,7 +28,7 @@ $(function() {
         _.each(searchResults, function(result, index) {
           
           // build object of data we want in our template
-          var songObject = {
+          var templateData = {
             albumArt: result.album.images.length > 0 ? result.album.images[0].url : null,
             artist: result.artists[0].name,
             name: result.name,
@@ -36,7 +36,7 @@ $(function() {
           };
 
           // put data in template and append to view
-          var $searchDataAppend = $(songTemplate(songObject));
+          var $searchDataAppend = $(songTemplate(templateData));
           $searchResults.append($searchDataAppend);
         });
 
